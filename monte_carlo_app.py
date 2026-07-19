@@ -43,9 +43,10 @@ if run:
 
     st.subheader("Simulation Summary")
     cols = st.columns(len(results))
+   cols = st.columns(max(1, len(results)))
     for idx, (stock, matrix) in enumerate(results.items()):
-        final_prices = matrix[-1]
-        cols = st.columns(max(1, len(results)))
+        last_price = data[stock].iloc[-1]
+        final_prices = matrix[-1].copy()
         prob_profit = (final_prices > last_price).mean() * 100
         prob_loss20 = (final_prices < last_price * 0.8).mean() * 100
         median = np.percentile(final_prices, 50)
