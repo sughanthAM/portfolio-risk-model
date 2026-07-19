@@ -71,10 +71,7 @@ if run:
     rows_chart = (n + 1) // 2
     fig, axes = plt.subplots(rows_chart, cols_chart, figsize=(14, 5 * rows_chart))
     fig.patch.set_facecolor("#0d1117")
-    if n == 1:
-        axes = np.array([[axes]])
-    elif rows_chart == 1:
-        axes = np.array([axes])
+    axes = np.array(axes).reshape(rows_chart, cols_chart)
 
     for idx, (stock, matrix) in enumerate(results.items()):
         row = idx // cols_chart
