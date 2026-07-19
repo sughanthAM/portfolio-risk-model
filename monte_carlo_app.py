@@ -20,10 +20,9 @@ if run:
     st.info(f"Downloading data for {tickers}...")
     
     data = yf.download(tickers, period=period, auto_adjust=True)["Close"]
-    if isinstance(data, pd.Series):
-            data = data.to_frame(name=tickers[0])
-    elif len(tickers) == 1:
-        data = data.to_frame(name=tickers[0])
+    if not isinstance(data, pd.DataFrame):
+    data = pd.DataFrame(data)
+data.columns = [str(c) for c in data.columns]
     data = data.dropna(axis=1, how="all")
     returns = data.pct_change().dropna()
 
