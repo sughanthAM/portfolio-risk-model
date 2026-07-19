@@ -21,8 +21,8 @@ if run:
     
     data = yf.download(tickers, period=period, auto_adjust=True)["Close"]
     if not isinstance(data, pd.DataFrame):
-    data = pd.DataFrame(data)
-data.columns = [str(c) for c in data.columns]
+        data = pd.DataFrame(data)
+    data.columns = [str(c) for c in data.columns]
     data = data.dropna(axis=1, how="all")
     returns = data.pct_change().dropna()
 
