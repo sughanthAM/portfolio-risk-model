@@ -43,7 +43,7 @@ if run:
 
     st.subheader("Simulation Summary")
     cols = st.columns(len(results))
-   cols = st.columns(max(1, len(results)))
+    cols = st.columns(max(1, len(results)))
     for idx, (stock, matrix) in enumerate(results.items()):
         last_price = data[stock].iloc[-1]
         final_prices = matrix[-1].copy()
